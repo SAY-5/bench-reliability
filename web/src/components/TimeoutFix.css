@@ -1,0 +1,235 @@
+.tf-wrap {
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 2rem);
+  grid-template-columns: 1fr;
+}
+
+.tf-panel {
+  padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+/* Histogram of 200 response times. */
+.tf-chart {
+  position: relative;
+  height: clamp(220px, 38vh, 340px);
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  padding: 1rem 0 0;
+}
+
+.tf-bin {
+  flex: 1 1 0;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(
+    180deg,
+    var(--signal-bright),
+    var(--signal-deep)
+  );
+  min-height: 2px;
+  transform-origin: bottom;
+}
+
+/* Bins that sit beyond the timeout (would have failed) are dimmed/red. */
+.tf-bin.fail {
+  background: linear-gradient(180deg, #6a2520, #3a1714);
+  opacity: 0.65;
+}
+
+/* The draggable timeout line overlay. */
+.tf-timeoutline {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--ink-0);
+  box-shadow: 0 0 16px rgba(253, 246, 236, 0.6);
+  pointer-events: none;
+}
+
+.tf-timeoutline::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -0.2rem;
+  left: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  white-space: nowrap;
+  color: var(--ink-0);
+  background: rgba(12, 10, 8, 0.8);
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid var(--panel-edge);
+}
+
+/* Response window band (600-850ms) marker under the axis. */
+.tf-window {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  background: rgba(255, 155, 61, 0.07);
+  border-left: 1px dashed var(--panel-edge-strong);
+  border-right: 1px dashed var(--panel-edge-strong);
+  pointer-events: none;
+}
+
+.tf-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ink-3);
+}
+
+/* Controls + readout. */
+.tf-controls {
+  margin-top: 1.6rem;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.tf-slider-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.tf-slider-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink-2);
+}
+
+.tf-slider-label b {
+  font-family: var(--font-display);
+  color: var(--ink-0);
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="range"].tf-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--bad) 0%,
+    var(--signal) 50%,
+    var(--good) 100%
+  );
+  outline-offset: 6px;
+}
+
+input[type="range"].tf-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ink-0);
+  border: 3px solid var(--signal-deep);
+  box-shadow: 0 0 18px var(--signal-glow);
+  cursor: grab;
+}
+input[type="range"].tf-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
+input[type="range"].tf-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ink-0);
+  border: 3px solid var(--signal-deep);
+  box-shadow: 0 0 18px var(--signal-glow);
+  cursor: grab;
+}
+
+.tf-presets {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tf-preset {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--panel-edge);
+  background: transparent;
+  color: var(--ink-1);
+  transition: border-color 0.2s, color 0.2s;
+}
+.tf-preset:hover {
+  border-color: var(--panel-edge-strong);
+  color: var(--ink-0);
+}
+.tf-preset[aria-pressed="true"] {
+  border-color: var(--signal);
+  color: var(--signal-bright);
+  background: var(--signal-faint);
+}
+
+.tf-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink-1);
+  cursor: pointer;
+}
+
+.tf-readout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.2rem 1.6rem;
+  align-items: center;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.tf-rate {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.4rem, 11vw, 5.4rem);
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  transition: color 0.3s;
+}
+
+.tf-rate small {
+  font-size: 0.35em;
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+}
+
+.tf-verdict {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-1);
+}
+
+.tf-verdict .tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 880px) {
+  .tf-wrap {
+    grid-template-columns: 1.55fr 1fr;
+    align-items: stretch;
+  }
+}
