@@ -1,5 +1,5 @@
 // Package tickets models the support-ticket side of Story 3. Shared bench
-// workstations generated roughly eight tickets a week, driven by three root
+// workstations produced roughly eight tickets a week, driven by three root
 // causes: a Windows Update swapping a vendor driver for a generic one, Linux
 // renaming USB ports by plug order, and a comms timeout shorter than device
 // response times. A keyword classifier buckets each ticket into one of those

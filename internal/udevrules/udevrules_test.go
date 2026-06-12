@@ -50,7 +50,7 @@ func TestGenerateRuleLine(t *testing.T) {
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
-	want := `SUBSYSTEM=="tty", ATTRS{serial}=="AH01T3XC", SYMLINK+="physio_monitor"`
+	const want = `SUBSYSTEM=="tty", ATTRS{serial}=="AH01T3XC", SYMLINK+="physio_monitor"`
 	if !strings.Contains(out, want) {
 		t.Fatalf("output missing rule line.\nwant: %s\ngot:\n%s", want, out)
 	}
