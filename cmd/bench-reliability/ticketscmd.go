@@ -37,8 +37,8 @@ func runTickets(args []string) error {
 
 	summary := tickets.Summarize(ts, tickets.RootCauses)
 	fmt.Println("\nTicket volume before vs after fixing all three root causes:")
-	fmt.Printf("  before: %.1f / week  (~%.0f / month)\n", summary.BeforePerWeek, summary.BeforePerMonth)
-	fmt.Printf("  after:  %.1f / week  (~%.0f / month)\n", summary.AfterPerWeek, summary.AfterPerMonth)
+	fmt.Printf("  Ticket volume: about %.0f per week  ->  about %.0f per month\n", summary.BeforePerWeek, summary.AfterPerMonth)
+	fmt.Printf("  before: %.1f / week    after: %.0f / month (the unrelated residue once the three root causes are fixed)\n", summary.BeforePerWeek, summary.AfterPerMonth)
 	fmt.Println("\nFixing the Windows driver lock, the Linux udev names, and the comms timeout")
 	fmt.Println("removed the three root causes, so the recurring tickets stopped.")
 	return nil

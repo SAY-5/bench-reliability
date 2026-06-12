@@ -3,14 +3,14 @@ package tickets
 import "fmt"
 
 // Seed returns a realistic four-week ticket set for a bank of shared bench
-// workstations. It averages about eight tickets per week, dominated by the
+// workstations. It averages exactly eight tickets per week, dominated by the
 // three Story 3 root causes plus a small residue of unrelated tickets. Once all
-// three causes are marked fixed, the residue projects to roughly two tickets a
-// month.
+// three causes are marked fixed, only the residue survives, projecting to about
+// two tickets a month.
 func Seed() []Ticket {
-	// Per week: 3 driver-update, 2 port-naming, 2 timeout, ~0.5 unrelated.
-	// Over four weeks that is 8/week before, and the unrelated residue alone
-	// after the fixes (2 over 4 weeks ~= 2.15/month).
+	// Thirty root-cause tickets plus two unrelated tickets over four weeks give
+	// 32 total, i.e. exactly 8.0/week before. The unrelated residue alone (2
+	// over 4 weeks, ~0.5/week, ~2.15/month) is what remains after the fixes.
 	driver := []string{
 		"Device shows as Unknown Device after Windows Update",
 		"Monitor driver reverted to generic driver, code 28 in Device Manager",
@@ -23,6 +23,14 @@ func Seed() []Ticket {
 	timeout := []string{
 		"Anesthesia controller times out, no response within 500ms",
 		"Intermittent timed out errors, device slow response",
+	}
+	// A couple of extra root-cause tickets land the before rate on exactly
+	// 8.0/week. They keep the three causes dominant and vary the per-week count.
+	extraDriver := map[int]string{
+		4: "Second bench lost its driver after the same Windows Update, code 28",
+	}
+	extraTimeout := map[int]string{
+		2: "Controller gave up before response, timed out at 500ms again",
 	}
 	// Sparse unrelated tickets: one in week 1, one in week 3.
 	unrelated := map[int]string{
@@ -45,6 +53,12 @@ func Seed() []Ticket {
 			add(week, s)
 		}
 		for _, s := range timeout {
+			add(week, s)
+		}
+		if s, ok := extraDriver[week]; ok {
+			add(week, s)
+		}
+		if s, ok := extraTimeout[week]; ok {
 			add(week, s)
 		}
 		if s, ok := unrelated[week]; ok {

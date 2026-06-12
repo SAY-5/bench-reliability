@@ -47,21 +47,26 @@ func TestSeedHistogram(t *testing.T) {
 	for _, c := range Categories() {
 		total += h[c]
 	}
-	if total != 30 {
-		t.Fatalf("expected 30 seed tickets, got %d", total)
+	if total != 32 {
+		t.Fatalf("expected 32 seed tickets, got %d", total)
+	}
+	// The three root causes must dominate the residue.
+	root := h[DriverUpdate] + h[PortNaming] + h[Timeout]
+	if root != 30 {
+		t.Fatalf("expected 30 root-cause tickets, got %d", root)
 	}
 }
 
-// Before the fixes the bench produces about 8 tickets a week; after all three
+// Before the fixes the bench produces exactly 8 tickets a week; after all three
 // root causes are fixed it falls to about 2 a month.
 func TestBeforeAfterSummary(t *testing.T) {
 	s := Summarize(Seed(), RootCauses)
 
-	if s.BeforePerWeek < 7 || s.BeforePerWeek > 9 {
-		t.Fatalf("before/week = %.2f, want ~8", s.BeforePerWeek)
+	if math.Abs(s.BeforePerWeek-8.0) > 1e-9 {
+		t.Fatalf("before/week = %.4f, want 8.0", s.BeforePerWeek)
 	}
-	if s.AfterPerMonth < 1.5 || s.AfterPerMonth > 3 {
-		t.Fatalf("after/month = %.2f, want ~2", s.AfterPerMonth)
+	if math.Round(s.AfterPerMonth) != 2 {
+		t.Fatalf("after/month = %.2f, want to round to 2", s.AfterPerMonth)
 	}
 	if s.AfterPerWeek >= s.BeforePerWeek {
 		t.Fatalf("after rate %.2f not below before rate %.2f", s.AfterPerWeek, s.BeforePerWeek)
