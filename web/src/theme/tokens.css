@@ -1,0 +1,39 @@
+:root {
+  /* Base: deep graphite workbench, warm-neutral not blue-black. */
+  --bg-0: #0c0a08;
+  --bg-1: #14110d;
+  --bg-2: #1c1813;
+  --panel: rgba(34, 28, 21, 0.55);
+  --panel-edge: rgba(255, 214, 165, 0.12);
+  --panel-edge-strong: rgba(255, 176, 92, 0.32);
+
+  /* One dominant signal accent: warm workshop amber. Distinct from cyan. */
+  --signal: #ff9b3d;
+  --signal-bright: #ffba6b;
+  --signal-deep: #d96b16;
+  --signal-glow: rgba(255, 155, 61, 0.45);
+  --signal-faint: rgba(255, 155, 61, 0.1);
+
+  /* Supporting states. */
+  --good: #58d6a0;
+  --good-glow: rgba(88, 214, 160, 0.4);
+  --bad: #ff5d52;
+  --bad-glow: rgba(255, 93, 82, 0.38);
+
+  /* Text. */
+  --ink-0: #fdf6ec;
+  --ink-1: #d6c9b6;
+  --ink-2: #9a8d7b;
+  --ink-3: #6b6052;
+
+  --font-display: "Clash Display", "Trebuchet MS", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo,
+    Consolas, monospace;
+
+  --radius: 18px;
+  --radius-sm: 11px;
+  --maxw: 1180px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-lift: 0 24px 64px -28px rgba(0, 0, 0, 0.85);
+}
