@@ -1,0 +1,162 @@
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(2rem, 6vw, 5rem) clamp(1.1rem, 4vw, 2.4rem);
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+
+/* Volumetric bench glow behind the hero. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto -10%;
+  height: 70%;
+  background: radial-gradient(
+    60% 70% at 50% 40%,
+    var(--signal-glow),
+    transparent 70%
+  );
+  filter: blur(70px);
+  opacity: 0.55;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* A faint engineering grid, the workbench surface. */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 214, 165, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 214, 165, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(80% 60% at 50% 45%, black, transparent 85%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 60rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 7.5vw, 6rem);
+  font-weight: 700;
+  margin-top: 1.4rem;
+  background: linear-gradient(180deg, var(--ink-0), #cbb89f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-lede {
+  margin-top: 1.6rem;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  color: var(--ink-1);
+  max-width: 46ch;
+}
+
+.hero-sub {
+  margin-top: 0.7rem;
+  color: var(--ink-2);
+  max-width: 52ch;
+  font-size: 0.95rem;
+}
+
+/* The dominant animated stat. */
+.statline {
+  margin-top: clamp(2.4rem, 5vw, 3.6rem);
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.2rem);
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.2rem, 9vw, 6rem);
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.stat-before .stat-value {
+  color: var(--bad);
+  text-shadow: 0 0 38px var(--bad-glow);
+}
+
+.stat-after .stat-value {
+  color: var(--good);
+  text-shadow: 0 0 40px var(--good-glow);
+}
+
+.stat-unit {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.stat-arrow {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  color: var(--signal);
+  filter: drop-shadow(0 0 18px var(--signal-glow));
+}
+
+.hero-causes {
+  margin-top: clamp(2.2rem, 5vw, 3rem);
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.cause-chip {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--panel-edge);
+  background: rgba(255, 214, 165, 0.04);
+  color: var(--ink-1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cause-chip .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 10px var(--signal-glow);
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  z-index: 1;
+}

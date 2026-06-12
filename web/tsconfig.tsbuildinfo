@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/sim/comms.ts","./src/sim/device.ts","./src/sim/index.ts","./src/sim/rng.ts","./src/sim/selfcheck.ts","./src/sim/tickets.ts","./src/sim/udev.ts"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/countup.tsx","./src/components/hero.tsx","./src/components/usereducedmotion.ts","./src/sim/comms.ts","./src/sim/device.ts","./src/sim/index.ts","./src/sim/rng.ts","./src/sim/selfcheck.ts","./src/sim/tickets.ts","./src/sim/udev.ts"],"version":"5.9.3"}
