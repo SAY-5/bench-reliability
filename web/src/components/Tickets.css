@@ -1,0 +1,188 @@
+.tk-wrap {
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 2rem);
+  grid-template-columns: 1fr;
+}
+
+.tk-panel {
+  padding: clamp(1.2rem, 3vw, 2rem);
+}
+
+.tk-causes {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.tk-cause {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.tk-cause-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tk-cause-name {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  color: var(--ink-1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tk-fixbtn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--panel-edge);
+  background: transparent;
+  color: var(--ink-2);
+  transition: all 0.2s;
+}
+.tk-fixbtn[aria-pressed="true"] {
+  border-color: var(--good);
+  color: var(--good);
+  background: var(--good-glow);
+}
+
+.tk-track {
+  height: 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  position: relative;
+}
+
+.tk-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--signal), var(--signal-deep));
+  transform-origin: left;
+}
+.tk-fill.fixed {
+  background: linear-gradient(
+    90deg,
+    rgba(88, 214, 160, 0.4),
+    rgba(88, 214, 160, 0.18)
+  );
+}
+.tk-fill.residue {
+  background: linear-gradient(90deg, var(--ink-3), #4a4337);
+}
+
+.tk-count {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  min-width: 2ch;
+  text-align: right;
+}
+
+/* Volume readout. */
+.tk-volume {
+  padding: clamp(1.4rem, 3.5vw, 2rem);
+  display: grid;
+  gap: 1.2rem;
+}
+
+.tk-vrow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--panel-edge);
+}
+.tk-vrow:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.tk-vlabel {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-2);
+}
+
+.tk-vbig {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 8vw, 4.2rem);
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.tk-vbig small {
+  font-size: 0.28em;
+  color: var(--ink-2);
+  letter-spacing: 0.04em;
+  margin-left: 0.3rem;
+}
+.tk-vbig.before {
+  color: var(--bad);
+  text-shadow: 0 0 32px var(--bad-glow);
+}
+.tk-vbig.after {
+  color: var(--good);
+  text-shadow: 0 0 34px var(--good-glow);
+}
+
+.tk-hint {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+
+/* Driver lock card. */
+.tk-driver {
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.tk-driver h3 {
+  font-size: 1.1rem;
+}
+
+.tk-gpo {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--ink-1);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--panel-edge);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem;
+}
+.tk-gpo .path {
+  color: var(--ink-2);
+}
+.tk-gpo .set {
+  color: var(--good);
+}
+.tk-driver p {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+
+@media (min-width: 880px) {
+  .tk-wrap {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: start;
+  }
+  .tk-driver {
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+  }
+}
