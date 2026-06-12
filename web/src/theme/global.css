@@ -62,6 +62,25 @@ a:hover {
   font-family: var(--font-mono);
 }
 
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  background: var(--signal);
+  color: #1a1208;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: top 0.2s var(--ease-out);
+}
+.skip-link:focus-visible {
+  top: 1rem;
+  text-decoration: none;
+}
+
 .glass {
   background: var(--panel);
   border: 1px solid var(--panel-edge);
