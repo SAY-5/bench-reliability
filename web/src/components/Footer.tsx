@@ -18,7 +18,7 @@ export function Footer() {
             move exactly as the model says they should.
           </p>
           <div className="ft-meta">
-            <span className="ft-tag">seeded latency 600&ndash;850 ms</span>
+            <span className="ft-tag">seeded latency 600 to 850 ms</span>
             <span className="ft-tag">timeout + retry client</span>
             <span className="ft-tag">udev serial mapping</span>
             <span className="ft-tag">8 / week &rarr; 2 / month</span>

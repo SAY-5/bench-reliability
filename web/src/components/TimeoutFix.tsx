@@ -153,7 +153,7 @@ export function TimeoutFix() {
           </div>
           <div className="tf-axis" aria-hidden="true">
             <span>{AXIS_MIN} ms</span>
-            <span>response window 600&ndash;850 ms</span>
+            <span>response window 600 to 850 ms</span>
             <span>{AXIS_MAX} ms</span>
           </div>
 
